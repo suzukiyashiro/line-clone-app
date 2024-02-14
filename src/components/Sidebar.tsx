@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { signOut } from "firebase/auth";
 import { auth, db } from "@/firebase/firebaseConfig";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, getDocs } from "firebase/firestore";
 import { useSelectedFriend } from '@/contexts/SelectedFriendContext';
 
 const Sidebar = () => {

@@ -6,7 +6,7 @@ import { auth, db } from "@/firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, setDoc, collection, getDoc, getDocs, query, where } from "firebase/firestore";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [friendUserId, setFriendUserId] = useState("");
   const [userId, setUserId] = useState("");
@@ -130,4 +130,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

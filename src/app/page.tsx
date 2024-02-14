@@ -19,7 +19,7 @@ export default function Home() {
       }
     });
     return unsubscribe;
-  }, []);
+  }, [router]); // ここにrouterを追加
 
   return (
     <SelectedFriendProvider>
