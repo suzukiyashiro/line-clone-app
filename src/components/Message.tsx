@@ -2,13 +2,11 @@ import { IMessage } from "@/types";
 import React from "react";
 import { format } from "date-fns";
 import { ja } from "date-fns/locale";
-import Image from "next/image";
 
 const Message: React.FC<{ message: IMessage; isOwnMessage: boolean }> = ({
   message,
   isOwnMessage,
 }) => {
-  const icon = "https://source.unsplash.com/collection/1346951/1000x500?sig=1";
   let formattedTime = "";
   if (message.time) {
     try {
@@ -31,15 +29,6 @@ const Message: React.FC<{ message: IMessage; isOwnMessage: boolean }> = ({
           isOwnMessage ? "flex-row-reverse" : ""
         }`}
       >
-        <Image
-          src={icon}
-          alt="アバター"
-          width={40} // この行を追加
-          height={40} // この行を追加
-          className={`rounded-full ${
-            isOwnMessage ? "ml-2" : "mr-2"
-          } cursor-pointer`}
-        />
         <div
           className={`max-w-xs md:max-w-md lg:max-w-lg px-4 py-2 rounded-2xl border ${
             isOwnMessage
@@ -48,13 +37,21 @@ const Message: React.FC<{ message: IMessage; isOwnMessage: boolean }> = ({
           }`}
         >
           <p className="text-gray-800">{message.text}</p>
-          <p
-            className={`text-gray-500 text-xs mt-1 ${
-              isOwnMessage ? "text-right" : ""
-            }`}
-          >
-            {formattedTime}
-          </p>
+          <div className="flex justify-between">
+            <p
+              className={`text-gray-500 text-xs ${
+                isOwnMessage ? "order-2" : ""
+              }`}
+            >
+              {formattedTime}
+            </p>
+            <p
+              className={`text-gray-500 text-xs ${
+                isOwnMessage ? "text-right order-1" : "order-2"
+              }`}
+            >
+            </p>
+          </div>
         </div>
       </div>
     </div>
