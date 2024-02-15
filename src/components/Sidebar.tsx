@@ -57,7 +57,7 @@ const Sidebar = () => {
           className="w-11 h-11 rounded-full object-cover align-middle mr-4"
         />
         <div>
-          <h2 className="text-3xl font-bold">{userName}</h2>
+          <h2 className="text-2xl font-bold">{userName}</h2>
         </div>
         <div className="ml-auto">
           <Link href="/settings">
