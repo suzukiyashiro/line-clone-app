@@ -3,7 +3,8 @@ import Link from "next/link";
 import { signOut } from "firebase/auth";
 import { auth, db } from "@/firebase/firebaseConfig";
 import { collection, query, getDocs } from "firebase/firestore";
-import { useSelectedFriend } from '@/contexts/SelectedFriendContext';
+import { useSelectedFriend } from "@/contexts/SelectedFriendContext";
+import { Gear } from "react-bootstrap-icons";
 
 const Sidebar = () => {
   const [friends, setFriends] = useState<{ id: string; name?: string }[]>([]);
@@ -44,23 +45,43 @@ const Sidebar = () => {
     fetchFriends();
   }, []);
 
-
   return (
     <div className="flex flex-col cursor-pointer relative h-full">
       {/* ユーザー名の表示 */}
-      <div className="p-4">
-        <h2 className="text-lg font-semibold">ログイン:</h2>
-        <h2 className="text-lg font-semibold">{userName}</h2>
+      <div className="p-2 flex items-center border-b border-gray-200 mb-2 ">
+        <img
+          src={`https://source.unsplash.com/collection/1346951/1000x500?sig=${Math.floor(
+            Math.random() * 100
+          )}`}
+          alt="friend icon"
+          className="w-11 h-11 rounded-full object-cover align-middle mr-4"
+        />
+        <div>
+          <h2 className="text-3xl font-bold">{userName}</h2>
+        </div>
+        <div className="ml-auto">
+          <Link href="/settings">
+            <button className="p-2">
+              <Gear size={24} />
+            </button>
+          </Link>
+        </div>
       </div>
       {/* エラーメッセージ */}
       {error && <p className="text-red-500">{error}</p>}
       {/* チャットリスト */}
       <div className="overflow-auto">
         {friends.map((friend) => (
-          <div key={friend.id} onClick={() => handleSelectFriend(friend)} className="p-2 my-1 hover:bg-gray-100 flex items-center cursor-pointer">
+          <div
+            key={friend.id}
+            onClick={() => handleSelectFriend(friend)}
+            className="p-2 my-1 hover:bg-gray-100 flex items-center cursor-pointer"
+          >
             {/* アイコン */}
             <img
-              src={`https://source.unsplash.com/collection/1346951/1000x500?sig=${Math.floor(Math.random() * 100)}`}
+              src={`https://source.unsplash.com/collection/1346951/1000x500?sig=${Math.floor(
+                Math.random() * 100
+              )}`}
               alt="friend icon"
               className="w-10 h-10 rounded-full object-cover align-middle mr-4"
             />
