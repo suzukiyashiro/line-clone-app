@@ -26,7 +26,7 @@ const LoginPage = () => {
               </button>
             </Link>
             {/* Youtubeリンク */}
-            <Link href="https://www.youtube.com/watch?v=GASgxcrGZhk" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700 text-center mt-4 flex items-center">
+            <Link href="https://www.youtube.com/watch?v=vvYm1Ub8_B0" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700 text-center mt-4 flex items-center">
               <BsYoutube className="mr-2 text-lg"/>アプリ解説動画を見る
             </Link>
           </div>
