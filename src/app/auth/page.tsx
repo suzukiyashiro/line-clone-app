@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link  from 'next/link';
+import { BsYoutube } from 'react-icons/bs';
 
 const LoginPage = () => {
 
@@ -20,9 +21,13 @@ const LoginPage = () => {
               </button>
             </Link>
             <Link href="/auth/register">
-              <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full text-center">
+              <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4 w-full text-center">
                 新規登録
               </button>
+            </Link>
+            {/* Youtubeリンク */}
+            <Link href="https://www.youtube.com/watch?v=GASgxcrGZhk" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700 text-center mt-4 flex items-center">
+              <BsYoutube className="mr-2 text-lg"/>アプリ解説動画を見る
             </Link>
           </div>
         </div>
