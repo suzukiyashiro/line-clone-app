@@ -24,7 +24,7 @@ const MessageList = () => {
         if (message.createdAt) {
           const createdAtDate = message.createdAt.toDate();
           // 日付と時刻のフォーマットを変更
-          message.formattedDate = `${createdAtDate.getMonth() + 1}/${createdAtDate.getDate()} ${createdAtDate.getHours()}:${createdAtDate.getMinutes()}`;
+          message.formattedDate = `${createdAtDate.getMonth() + 1}/${createdAtDate.getDate()} ${createdAtDate.getHours()}:${createdAtDate.getMinutes().toString().padStart(2, '0')}`;
         }
         fetchedMessages.push(message);
       });
@@ -46,7 +46,7 @@ const MessageList = () => {
                 <div className={`max-w-xs md:max-w-md lg:max-w-lg px-4 py-2 rounded-2xl border ${message.isOwnMessage ? "bg-green-200 border-green-500" : "bg-white border-gray-800"}`}>
                   <p className="text-gray-800">{message.text}</p>
                 </div>
-                <div className={`text-xs ${message.isOwnMessage ? "text-right mr-2"  : "text-left ml-2"}`}>
+                <div className={`text-xs ${message.isOwnMessage ? "text-right mr-1"  : "text-left ml-1"}`}>
                   <p className="text-gray-500">
                     {message.formattedDate}
                   </p>
