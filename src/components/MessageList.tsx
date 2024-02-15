@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { db } from "@/firebase/firebaseConfig";
-import { collection, doc, onSnapshot } from "firebase/firestore";
+import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
 import { auth } from "@/firebase/firebaseConfig";
 import { useSelectedFriend } from "@/contexts/SelectedFriendContext";
-import Message from "./Message";
 
 const MessageList = () => {
   const [messages, setMessages] = useState<any[]>([]);
@@ -22,10 +21,15 @@ const MessageList = () => {
         const message = doc.data();
         message.id = doc.id; // メッセージのIDを保存
         message.isOwnMessage = message.from === myUserId;
+        if (message.createdAt) {
+          const createdAtDate = message.createdAt.toDate();
+          // 日付と時刻のフォーマットを変更
+          message.formattedDate = `${createdAtDate.getMonth() + 1}/${createdAtDate.getDate()} ${createdAtDate.getHours()}:${createdAtDate.getMinutes()}`;
+        }
         fetchedMessages.push(message);
       });
       // 日付でソート
-      fetchedMessages.sort((a, b) => a.time - b.time);
+      fetchedMessages.sort((a, b) => a.createdAt - b.createdAt);
       setMessages(fetchedMessages);
     });
     return () => unsubscribe();
@@ -35,9 +39,22 @@ const MessageList = () => {
     <div className="p-4 overflow-y-scroll flex-1">
       <h2 className="text-xl font-bold mb-4">{selectedFriend?.name}</h2>
       <div className="space-y-4">
-        {messages.map((message, index) => (
-          <Message key={index} message={message} isOwnMessage={message.isOwnMessage} />
-        ))}
+        {messages.map((message, index) => {
+          return (
+            <div key={index} className={`flex ${message.isOwnMessage ? "justify-end" : "justify-start"}`}>
+              <div className={`flex items-center ${message.isOwnMessage ? "flex-row-reverse" : ""}`}>
+                <div className={`max-w-xs md:max-w-md lg:max-w-lg px-4 py-2 rounded-2xl border ${message.isOwnMessage ? "bg-green-200 border-green-500" : "bg-white border-gray-800"}`}>
+                  <p className="text-gray-800">{message.text}</p>
+                  <div className="flex justify-between">
+                    <p className={`text-gray-500 text-xs ${message.isOwnMessage ? "order-2" : ""}`}>
+                      {message.formattedDate}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
