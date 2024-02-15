@@ -45,8 +45,8 @@ const MessageList = () => {
               <div className={`flex items-center ${message.isOwnMessage ? "flex-row-reverse" : ""}`}>
                 <div className={`max-w-xs md:max-w-md lg:max-w-lg px-4 py-2 rounded-2xl border ${message.isOwnMessage ? "bg-green-200 border-green-500" : "bg-white border-gray-800"}`}>
                   <p className="text-gray-800">{message.text}</p>
-                  <div className="flex justify-between">
-                    <p className={`text-gray-500 text-xs ${message.isOwnMessage ? "order-2" : ""}`}>
+                  <div className="flex justify-end">
+                    <p className="text-gray-500 text-xs">
                       {message.formattedDate}
                     </p>
                   </div>
