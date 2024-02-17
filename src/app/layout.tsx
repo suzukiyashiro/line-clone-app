@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
 import dynamic from 'next/dynamic';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const Loading = dynamic(() => import('./loading'), {
   suspense: true,
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <Suspense fallback={<Loading />}>{children}</Suspense>
+        <SpeedInsights />
       </body>
     </html>
   );
