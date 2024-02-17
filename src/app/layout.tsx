@@ -4,6 +4,7 @@ import "./globals.css";
 import { Suspense } from "react";
 import dynamic from 'next/dynamic';
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from '@vercel/analytics/react';
 
 const Loading = dynamic(() => import('./loading'), {
   suspense: true,
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body>
         <Suspense fallback={<Loading />}>{children}</Suspense>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
